@@ -188,4 +188,8 @@ app.use((err, req, res, next) => {
 });
 
 // 导出为Vercel Serverless Function
-export default app;
+// Vercel需要一个处理函数，而不是Express实例
+export default (req, res) => {
+  // 让Express处理请求
+  return app(req, res);
+};
