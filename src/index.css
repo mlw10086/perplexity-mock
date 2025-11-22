@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 明亮主题 */
+  :root.light {
+    --background-rgb: 255 255 255;
+    --surface-rgb: 248 249 250;
+    --surface-hover-rgb: 233 236 239;
+    --border-rgb: 222 226 230;
+    --secondary-rgb: 226 232 240;
+    --text-main-rgb: 33 37 41;
+    --text-muted-rgb: 108 117 125;
+  }
+  
+  /* 暗黑主题 */
+  :root.dark {
+    --background-rgb: 25 26 26;
+    --surface-rgb: 32 34 34;
+    --surface-hover-rgb: 45 47 47;
+    --border-rgb: 45 47 47;
+    --secondary-rgb: 226 232 240;
+    --text-main-rgb: 241 245 249;
+    --text-muted-rgb: 148 163 184;
+  }
+
+  /* 默认暗黑主题 */
+  :root {
+    --background-rgb: 25 26 26;
+    --surface-rgb: 32 34 34;
+    --surface-hover-rgb: 45 47 47;
+    --border-rgb: 45 47 47;
+    --secondary-rgb: 226 232 240;
+    --text-main-rgb: 241 245 249;
+    --text-muted-rgb: 148 163 184;
+  }
+  
+  body {
+    background-color: rgb(var(--background-rgb));
+    color: rgb(var(--text-main-rgb));
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-hover rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border;
+  }
+}
+
+.glass-panel {
+  @apply bg-surface/80 backdrop-blur-md border border-border;
+}
