@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { Search, Play, Pause, Music2, Clock, User, Disc, Volume2, VolumeX, SkipBack, SkipForward, Settings, Check, ChevronDown, X, Maximize2, Minimize2, Repeat, Repeat1, Shuffle, ChevronUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { getApiUrl } from '@/config/api';
 
 // 音质选项
 const QUALITY_OPTIONS = [
@@ -46,7 +47,8 @@ const DiscoverPage = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/music/search?name=${encodeURIComponent(searchTerm)}&limit=50`);
+      const apiUrl = getApiUrl();
+      const response = await fetch(`${apiUrl}/api/music/search?name=${encodeURIComponent(searchTerm)}&limit=50`);
       const data = await response.json();
       
       if (data.code === 200) {
@@ -80,7 +82,8 @@ const DiscoverPage = () => {
 
       // 获取音乐详情
       setLoading(true);
-      const response = await fetch(`http://localhost:3001/api/music/detail?id=${song.id}&level=${useQuality}&type=json`);
+      const apiUrl = getApiUrl();
+      const response = await fetch(`${apiUrl}/api/music/detail?id=${song.id}&level=${useQuality}&type=json`);
       const data = await response.json();
       
       if (data.status === 200 && data.url) {
